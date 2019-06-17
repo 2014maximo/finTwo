@@ -1,0 +1,103 @@
+<div class="container">
+    <h1 class=text-center>Formulario Crear</h1>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+
+      <p-messages [(value)]="msgs"></p-messages>
+
+
+
+      <button routerLink="/listarPersonas" class="btn btn-primary">Volver
+      </button>
+
+
+        <form [formGroup]="form">
+          <!-- NOMBRE -->
+            <div class="form-group">
+              <input formControlName="nombre"
+                     type="text" 
+                     class="form-control" 
+                     placeholder="Nombre"
+                     (input)="agregarAlCorreo($event.target.value);">
+              <p-message severity="error" 
+                     *ngIf="form.get('nombre').hasError('required')" 
+                     text="El campo es requerido">
+              </p-message>
+                   <p-message severity="error" 
+                     *ngIf="form.get('nombre').hasError('minlength') || form.get('nombre').hasError('maxlength')" 
+                     text="El campo no cumple la longitud esperada"></p-message>
+                   <p-message severity="error" 
+                     *ngIf="form.get('nombre').hasError('pattern')" 
+                     text="No es un nombre valido">
+                   </p-message>
+              
+            </div>
+
+            <!-- APELLIDO -->
+            <div class="form-group">
+              <input formControlName="apellido"
+                    type="text" 
+                     class="form-control" 
+                     placeholder="Apellido">
+                     <p-message severity="error" 
+                     *ngIf="form.get('apellido').hasError('required')" 
+                     text="El campo es requerido">
+              </p-message>
+                   <p-message severity="error" 
+                     *ngIf="form.get('apellido').hasError('minlength') || form.get('apellido').hasError('maxlength')" 
+                     text="El campo no cumple la longitud esperada"></p-message>
+                   <p-message severity="error" 
+                     *ngIf="form.get('apellido').hasError('pattern')" 
+                     text="No es un apellido valido">
+                   </p-message>
+              
+            </div>
+
+            <!-- EMAIL -->
+            <div class="form-group">
+                <input formControlName="email"
+                       type="text" 
+                       class="form-control" 
+                       placeholder="Email">
+                <p-message severity="error" 
+                       *ngIf="form.get('email').hasError('correoSinNombre')" 
+                       text="El correo no contiene el nombre.">
+                </p-message>
+                <p-message severity="error" 
+                     *ngIf="form.get('email').hasError('pattern')" 
+                     text="No es un email valido">
+                </p-message>
+            </div>
+
+            <!-- IP -->
+            <div class="form-group">
+                <input formControlName="ip"
+                      type="text" 
+                       class="form-control" 
+                       placeholder="IP 000.255.255.255">
+                <p-message severity="error" 
+                       *ngIf="form.get('ip').hasError('pattern')" 
+                       text="No es una ip valida">
+                </p-message>
+                <p-message severity="error" 
+                          *ngIf="form.get('ip').hasError('required')" 
+                          text="El campo es requerido">
+                </p-message>
+            </div>
+            <div class="form-group">
+              <input SoloNumeros type="number"
+                     class="form-control"
+                     placeholder="numeros">
+            </div>
+
+            <button (click)="guardar();">Agregar</button>
+
+          </form>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+
+
